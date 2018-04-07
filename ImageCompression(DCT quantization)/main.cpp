@@ -39,15 +39,17 @@ void setChanels(Mat &img, const vvld &chanel0, const vvld &chanel1, const vvld &
 int main() {
 	//Read
 	long double q;
-	cout << "Enter quantization quality (10 ^ -10)" << endl;
+	cout << "Enter quantization quality (0 - no changes)" << endl;
 	cin >> q;
 	Mat imgIn = imread("test.jpg");
 	int cols = imgIn.cols, rows = imgIn.rows;
+	//Show input img
+	namedWindow("in", WINDOW_AUTOSIZE);
+	imshow("in", imgIn);
 
 	//Get chanels from img
 	vvld chanel0, chanel1, chanel2;
 	getChanels(imgIn, chanel0, chanel1, chanel2); 
-	
 	//Do DCT and quantization
 	vvld chanel0DCT = chanel0, chanel1DCT = chanel1, chanel2DCT = chanel2;
 	DCT(chanel0, chanel0DCT);
@@ -56,7 +58,6 @@ int main() {
 	quant(chanel0DCT, chanel0, q);
 	quant(chanel1DCT, chanel1, q);
 	quant(chanel2DCT, chanel2, q);
-
 	//Do it back
 	quant_back(chanel0, chanel0DCT, q);
 	quant_back(chanel1, chanel1DCT, q);
@@ -65,10 +66,10 @@ int main() {
 	DCT_back(chanel1DCT, chanel1);
 	DCT_back(chanel2DCT, chanel2); 
 	
-	//Show
+	//Show undo img
 	Mat imgOut = imgIn;
 	setChanels(imgOut, chanel0, chanel1, chanel2);
-	namedWindow("Window", WINDOW_AUTOSIZE);
-	imshow("Window", imgOut);
+	namedWindow("out", WINDOW_AUTOSIZE);
+	imshow("out", imgOut);
 	waitKey(0);
 }

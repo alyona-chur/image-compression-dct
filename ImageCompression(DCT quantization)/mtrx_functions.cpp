@@ -34,7 +34,6 @@ void inverseMatrix(const vvld &matrix, vvld &invMatrix) {
 	//Needs to be fixed
 	//Has problems with zeros matrices
 	//There will not be zeros matrices
-	//Later
 	vvld temp;
 	resizeMatrix(temp, (int)matrix.size(), (int)matrix.size() * 2);
 	for (int i = 0; i < (int)matrix.size(); ++i) {

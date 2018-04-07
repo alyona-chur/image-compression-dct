@@ -34,7 +34,6 @@ void doBlockDCTback(vvld &block, const vvld &DCTblock, const vvld &DCTmatrix, co
 
 void DCT(const vvld &matrix, vvld &postDCT) {
 	//postDCT = matrix;
-	//substr128(postDCT);
 
 	vvld DCTmatrix;
 	resizeMatrix(DCTmatrix, DCT_BLOCK_SIZE, DCT_BLOCK_SIZE);
@@ -102,7 +101,6 @@ void DCT_back(const vvld &postDCT, vvld &matrix) {
 			}
 		}
 	}
-	//plus128(matrix);
 }
 
 int tr(int x) {
